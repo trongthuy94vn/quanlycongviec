@@ -1,5 +1,6 @@
 import React from "react";
 import { Button } from "react-bootstrap";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 const TaskItem = ({ task, index }) => {
   return (
@@ -19,11 +20,11 @@ const TaskItem = ({ task, index }) => {
       </td>
       <td className="text-center">
         <Button type="button" variant="warning">
-          Sửa
+          <FontAwesomeIcon icon="pencil-alt" /> Sửa
         </Button>
         &nbsp;
         <Button type="button" variant="danger">
-          Xóa
+          <FontAwesomeIcon icon={["far", "trash-alt"]} /> Xóa
         </Button>
       </td>
     </tr>
