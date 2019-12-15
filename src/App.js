@@ -12,10 +12,9 @@ import TasksContextProvider from "./context/TaskContext";
 import "./App.css";
 
 function App() {
-  const [tasksList, dispatchTask] = useReducer(tasksReducer, initialTasks);
-  console.log(tasksList);
+  const [tasksList, dispatchTasks] = useReducer(tasksReducer, initialTasks);
   return (
-    <TasksContextProvider value={{ tasksList, dispatchTask }}>
+    <TasksContextProvider value={{ tasksList, dispatchTasks }}>
       <Container>
         <div className="text-center">
           <h1>Quản Lý Công Việc</h1>

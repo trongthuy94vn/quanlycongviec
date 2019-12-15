@@ -6,7 +6,7 @@ import { TasksContext } from "../../context/TaskContext";
 import { ADD_TASK } from "../../constants/ActionTypes";
 
 const TaskForm = () => {
-  const { dispatchTask } = useContext(TasksContext);
+  const { dispatchTasks } = useContext(TasksContext);
   const [task, setTask] = useState("");
   const [status, setStatus] = useState(false);
 
@@ -18,7 +18,7 @@ const TaskForm = () => {
   const handleSubmit = e => {
     if (task) {
       e.preventDefault();
-      dispatchTask({ type: ADD_TASK, task, status: isActive(status) });
+      dispatchTasks({ type: ADD_TASK, task, status: isActive(status) });
       setTask("");
       setStatus(false);
     }
