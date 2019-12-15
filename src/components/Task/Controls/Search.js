@@ -1,5 +1,6 @@
 import React from "react";
 import { Button, InputGroup, FormControl } from "react-bootstrap";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 const TaskSearchControl = () => {
   return (
@@ -11,7 +12,7 @@ const TaskSearchControl = () => {
       />
       <InputGroup.Append>
         <Button variant="primary" type="button">
-          Tìm
+          <FontAwesomeIcon icon="search" /> Tìm
         </Button>
       </InputGroup.Append>
     </InputGroup>

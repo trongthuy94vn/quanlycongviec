@@ -1,5 +1,6 @@
 import React from "react";
 import { Container, Row, Col, Button } from "react-bootstrap";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 import TaskForm from "./components/Task/Form";
 import TaskTable from "./components/Task/Table";
@@ -24,7 +25,7 @@ function App() {
         <TaskForm />
         <Col xs="8" sm="8" md="8" lg="8">
           <Button type="button" variant="primary">
-            Thêm Công Việc
+            <FontAwesomeIcon icon="plus" /> Thêm Công Việc
           </Button>
           <TaskControl />
           <TaskTable tasksList={tasksList} />

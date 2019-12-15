@@ -1,13 +1,18 @@
 import React from "react";
 import { Col, Form, Button, Alert } from "react-bootstrap";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 const TaskForm = () => {
   return (
     <Col xl="4" sm="4" md="4" lg="4" className="px5">
       <div>
         <Alert variant="warning">
-          <Alert.Heading as="h5">Thêm Công Việc</Alert.Heading>
-          <span className="float-right"></span>
+          <Alert.Heading as="h5">
+            Thêm Công Việc
+            <span>
+              <FontAwesomeIcon icon="times-circle" className="float-right" />
+            </span>
+          </Alert.Heading>
         </Alert>
       </div>
       <Form>
@@ -25,11 +30,11 @@ const TaskForm = () => {
         <br />
         <div className="text-center">
           <Button type="submit" variant="warning">
-            Lưu lại
+            <FontAwesomeIcon icon="plus" /> Lưu lại
           </Button>
           &nbsp;
           <Button type="submit" variant="danger">
-            Hủy Bỏ
+            <FontAwesomeIcon icon="times" /> Hủy Bỏ
           </Button>
         </div>
       </Form>
