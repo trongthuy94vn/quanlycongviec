@@ -22,7 +22,12 @@ export default function tasksReducer(state, action) {
     case DELETE_TASK:
       return state.filter(task => task.id !== action.id);
     case EDIT_TASK:
-      return "EDIT_TASK";
+      return state.map(task => {
+        if (task.id === action.task.id) {
+          return action.task;
+        }
+        return task;
+      });
     case UPDATE_STATUS:
       return state.map(task => {
         if (task.id === action.id) {

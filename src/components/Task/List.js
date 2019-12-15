@@ -2,13 +2,16 @@ import React from "react";
 
 import TaskItem from "./Item";
 
-
-const TaskList = ({tasksList}) => {
-
+const TaskList = ({ tasksList, onEditTask }) => {
   return (
     <>
       {tasksList.map((task, index) => (
-        <TaskItem key={task.id} index={index} task={task} />
+        <TaskItem
+          key={task.id}
+          index={index}
+          task={task}
+          onEditTask={onEditTask}
+        />
       ))}
     </>
   );

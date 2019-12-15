@@ -5,8 +5,8 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { TasksContext } from "../../context/TaskContext";
 import { DELETE_TASK, UPDATE_STATUS } from "../../constants/ActionTypes";
 
-const TaskItem = ({ task, index }) => {
-  const dispatchTasks = useContext(TasksContext);
+const TaskItem = ({ task, index, onEditTask }) => {
+  const { dispatchTasks } = useContext(TasksContext);
 
   const handleDeleteTask = () => {
     dispatchTasks({ type: DELETE_TASK, id: task.id });
@@ -14,6 +14,10 @@ const TaskItem = ({ task, index }) => {
 
   const handleUpdateStatus = () => {
     dispatchTasks({ type: UPDATE_STATUS, id: task.id });
+  };
+
+  const handleEditTask = () => {
+    onEditTask(task);
   };
   return (
     <tr>
@@ -31,7 +35,7 @@ const TaskItem = ({ task, index }) => {
         )}
       </td>
       <td className="text-center">
-        <Button type="button" variant="warning">
+        <Button type="button" variant="warning" onClick={handleEditTask}>
           <FontAwesomeIcon icon="pencil-alt" /> Sửa
         </Button>
         &nbsp;

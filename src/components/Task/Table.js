@@ -3,7 +3,7 @@ import { Table, Form } from "react-bootstrap";
 
 import TaskList from "./List";
 
-const TaskTable = ({ tasksList }) => {
+const TaskTable = ({ tasksList, onEditTask }) => {
   const [status, setStatus] = useState("all");
 
   const filteredTask = tasksList.filter(task => {
@@ -49,7 +49,7 @@ const TaskTable = ({ tasksList }) => {
           </td>
           <td></td>
         </tr>
-        <TaskList tasksList={filteredTask} />
+        <TaskList tasksList={filteredTask} onEditTask={onEditTask} />
       </tbody>
     </Table>
   );
