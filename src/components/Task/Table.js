@@ -1,9 +1,23 @@
-import React from "react";
+import React, { useState } from "react";
 import { Table, Form } from "react-bootstrap";
 
 import TaskList from "./List";
 
-const TaskTable = props => {
+const TaskTable = ({ tasksList }) => {
+  const [status, setStatus] = useState("all");
+
+  const filteredTask = tasksList.filter(task => {
+    if (status === "all") {
+      return true;
+    }
+    if (status === "active" && task.status) {
+      return true;
+    }
+    if (status === "hide" && !task.status) {
+      return true;
+    }
+    return false;
+  });
   return (
     <Table bordered hover>
       <thead>
@@ -22,7 +36,11 @@ const TaskTable = props => {
           </td>
           <td>
             <Form.Group>
-              <Form.Control as="select">
+              <Form.Control
+                as="select"
+                value={status}
+                onChange={e => setStatus(e.target.value)}
+              >
                 <option value="all">Tất Cả</option>
                 <option value="active">Kích Hoạt</option>
                 <option value="hide">Ẩn</option>
@@ -31,7 +49,7 @@ const TaskTable = props => {
           </td>
           <td></td>
         </tr>
-        <TaskList {...props} />
+        <TaskList tasksList={filteredTask} />
       </tbody>
     </Table>
   );

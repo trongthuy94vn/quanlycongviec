@@ -14,7 +14,7 @@ import "./App.css";
 function App() {
   const [tasksList, dispatchTasks] = useReducer(tasksReducer, initialTasks);
   return (
-    <TasksContextProvider value={{ tasksList, dispatchTasks }}>
+    <TasksContextProvider value={dispatchTasks}>
       <Container>
         <div className="text-center">
           <h1>Quản Lý Công Việc</h1>
@@ -27,7 +27,7 @@ function App() {
               <FontAwesomeIcon icon="plus" /> Thêm Công Việc
             </Button>
             <TaskControl />
-            <TaskTable />
+            <TaskTable tasksList={tasksList}/>
           </Col>
         </Row>
       </Container>

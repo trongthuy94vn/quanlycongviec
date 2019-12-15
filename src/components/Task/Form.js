@@ -6,12 +6,12 @@ import { TasksContext } from "../../context/TaskContext";
 import { ADD_TASK } from "../../constants/ActionTypes";
 
 const TaskForm = () => {
-  const { dispatchTasks } = useContext(TasksContext);
+  const dispatchTasks = useContext(TasksContext);
   const [task, setTask] = useState("");
-  const [status, setStatus] = useState(false);
+  const [status, setStatus] = useState("hide");
 
   function isActive(status) {
-    if (status === "true") return true;
+    if (status === "active") return true;
     return false;
   }
 
@@ -20,13 +20,13 @@ const TaskForm = () => {
       e.preventDefault();
       dispatchTasks({ type: ADD_TASK, task, status: isActive(status) });
       setTask("");
-      setStatus(false);
+      setStatus("hide");
     }
   };
 
   const handleResetSubmit = e => {
     setTask("");
-    setStatus(false);
+    setStatus("hide");
   };
   return (
     <Col xl="4" sm="4" md="4" lg="4" className="px5">
@@ -58,8 +58,8 @@ const TaskForm = () => {
             value={status}
             onChange={e => setStatus(e.target.value)}
           >
-            <option value="true">Kích Hoạt</option>
-            <option value="false">Ẩn</option>
+            <option value="active">Kích Hoạt</option>
+            <option value="hide">Ẩn</option>
           </Form.Control>
         </Form.Group>
         <br />

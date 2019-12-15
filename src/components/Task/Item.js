@@ -6,7 +6,7 @@ import { TasksContext } from "../../context/TaskContext";
 import { DELETE_TASK, UPDATE_STATUS } from "../../constants/ActionTypes";
 
 const TaskItem = ({ task, index }) => {
-  const { dispatchTasks } = useContext(TasksContext);
+  const dispatchTasks = useContext(TasksContext);
 
   const handleDeleteTask = () => {
     dispatchTasks({ type: DELETE_TASK, id: task.id });
