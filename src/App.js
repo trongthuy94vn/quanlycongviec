@@ -1,25 +1,36 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import { Container, Row, Col, Button } from "react-bootstrap";
+
+import TaskForm from "./components/Task/Form";
+import TaskTable from "./components/Task/Table";
+import TaskControl from "./components/Task/Controls";
+
+import "./App.css";
+
+const tasksList = [
+  { id: 1, task: "Đi làm", status: true },
+  { id: 2, task: "Đi chơi", status: false },
+  { id: 3, task: "Xem phim", status: true }
+];
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Container>
+      <div className="text-center">
+        <h1>Quản Lý Công Việc</h1>
+        <hr />
+      </div>
+      <Row>
+        <TaskForm />
+        <Col xs="8" sm="8" md="8" lg="8">
+          <Button type="button" variant="primary">
+            Thêm Công Việc
+          </Button>
+          <TaskControl />
+          <TaskTable tasksList={tasksList} />
+        </Col>
+      </Row>
+    </Container>
   );
 }
 
