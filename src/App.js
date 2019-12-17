@@ -49,7 +49,12 @@ function App() {
               currentTask={currentTask}
             />
           )}
-          <Col xs="8" sm="8" md="8" lg="8">
+          <Col
+            xs={!state.isShow ? "12" : "8"}
+            sm={!state.isShow ? "12" : "8"}
+            md={!state.isShow ? "12" : "8"}
+            lg={!state.isShow ? "12" : "8"}
+          >
             <Button
               type="button"
               variant="primary"

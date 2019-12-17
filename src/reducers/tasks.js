@@ -19,8 +19,10 @@ export default function tasksReducer(state, action) {
         ...state,
         { id: uuid(), task: action.task, status: action.status }
       ];
+
     case DELETE_TASK:
       return state.filter(task => task.id !== action.id);
+
     case EDIT_TASK:
       return state.map(task => {
         if (task.id === action.task.id) {
@@ -28,6 +30,17 @@ export default function tasksReducer(state, action) {
         }
         return task;
       });
+
+    case "A_TO_Z":
+      let AZsortState = [...state];
+      AZsortState.sort((a, b) => a.task.localeCompare(b.task));
+      return AZsortState;
+
+    case "Z_TO_A":
+      let ZAsortState = [...state];
+      ZAsortState.sort((a, b) => b.task.localeCompare(a.task));
+      return ZAsortState;
+
     case UPDATE_STATUS:
       return state.map(task => {
         if (task.id === action.id) {
@@ -35,6 +48,7 @@ export default function tasksReducer(state, action) {
         }
         return task;
       });
+
     default:
       return state;
   }
