@@ -19,17 +19,26 @@ function App() {
     task: "",
     status: true
   });
-
+  const [keyword, setKeyword] = useState("");
   const { isShow, tasks } = state;
 
+  let tasksList = tasks;
+
+  if (keyword) {
+    tasksList = tasksList.filter(task => {
+      return task.task.toLowerCase().includes(keyword.toLowerCase());
+    });
+  }
   const onEditTask = task => {
     dispatchTasks(editForm());
     setCurrentTask(task);
   };
+  const onSearchTask = keyword => {
+    setKeyword(keyword);
+  };
 
   useEffect(() => {
     localStorage.setItem("tasks", JSON.stringify(tasks));
-    console.log(localStorage.getItem("tasks"));
   }, [tasks]);
 
   const handleToggle = () => {
@@ -38,7 +47,7 @@ function App() {
 
   return (
     <TasksContextProvider
-      value={{ dispatchTasks, state, onEditTask, currentTask }}
+      value={{ dispatchTasks, state, onEditTask, currentTask, onSearchTask }}
     >
       <Container>
         <div className="text-center">
@@ -57,7 +66,7 @@ function App() {
               <FontAwesomeIcon icon="plus" /> Thêm Công Việc
             </Button>
             <TaskControl />
-            <TaskTable tasksList={tasks} />
+            <TaskTable tasksList={tasksList} />
           </Col>
         </Row>
       </Container>
