@@ -1,12 +1,13 @@
 import React, { useContext } from "react";
-import { Button } from "react-bootstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+
+import TaskButton from "./Button";
 
 import { TasksContext } from "../../context/TaskContext";
 import { deleteTask, updateStatus } from "../../actions/tasks";
 
 const TaskItem = ({ task, index }) => {
-  const { dispatchTasks, onEditTask } = useContext(TasksContext);
+  const { dispatchTasks, onEditTask, state } = useContext(TasksContext);
 
   const handleDeleteTask = () => {
     dispatchTasks(deleteTask(task.id));
@@ -26,23 +27,41 @@ const TaskItem = ({ task, index }) => {
       <td>{task.task}</td>
       <td className="text-center">
         {task.status ? (
-          <Button variant="danger" size="sm" onClick={handleUpdateStatus}>
+          <TaskButton
+            variant="danger"
+            isEdit={state.isEdit}
+            onClick={handleUpdateStatus}
+          >
             Kích Hoạt
-          </Button>
+          </TaskButton>
         ) : (
-          <Button variant="success" size="sm" onClick={handleUpdateStatus}>
+          <TaskButton
+            variant="success"
+            isEdit={state.isEdit}
+            onClick={handleUpdateStatus}
+          >
             Ẩn
-          </Button>
+          </TaskButton>
         )}
       </td>
       <td className="text-center">
-        <Button type="button" variant="warning" onClick={handleEditTask}>
+        <TaskButton
+          variant="warning"
+          isEdit={state.isEdit}
+          onClick={handleEditTask}
+          size="md"
+        >
           <FontAwesomeIcon icon="pencil-alt" /> Sửa
-        </Button>
+        </TaskButton>
         &nbsp;
-        <Button type="button" variant="danger" onClick={handleDeleteTask}>
+        <TaskButton
+          variant="danger"
+          isEdit={state.isEdit}
+          onClick={handleDeleteTask}
+          size="md"
+        >
           <FontAwesomeIcon icon={["far", "trash-alt"]} /> Xóa
-        </Button>
+        </TaskButton>
       </td>
     </tr>
   );

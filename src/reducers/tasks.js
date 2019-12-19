@@ -42,6 +42,7 @@ export default function tasksReducer(state, action) {
       return {
         ...state,
         isShow: false,
+        isEdit: false,
         tasks: state.tasks.map(task => {
           if (task.id === action.task.id) {
             return action.task;
@@ -79,7 +80,7 @@ export default function tasksReducer(state, action) {
     case TOGGLE_FORM:
       return { ...state, isShow: !state.isShow };
     case CLOSE_FORM:
-      return { ...state, isShow: false };
+      return { ...state, isShow: false, isEdit: false };
     case EDIT_FORM:
       return { ...state, isShow: true, isEdit: true };
     default:
