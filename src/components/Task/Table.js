@@ -6,11 +6,11 @@ import TaskList from "./List";
 const TaskTable = ({ tasksList }) => {
   const [status, setStatus] = useState("all");
   const [value, setValue] = useState("");
-  
+
   let filteredTask = tasksList;
 
   if (value) {
-    filteredTask = tasksList.filter(task => {
+    filteredTask = filteredTask.filter(task => {
       return task.task.toLowerCase().includes(value.toLowerCase());
     });
   }
