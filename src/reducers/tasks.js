@@ -35,6 +35,7 @@ export default function tasksReducer(state, action) {
     case DELETE_TASK:
       return {
         ...state,
+        isShow: false,
         tasks: state.tasks.filter(task => task.id !== action.id)
       };
 
