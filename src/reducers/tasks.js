@@ -11,14 +11,17 @@ import {
 } from "../constants/ActionTypes";
 import uuid from "uuid/v4";
 
+const tasksList = [
+  { id: uuid(), task: "Đi làm", status: true },
+  { id: uuid(), task: "Đi chơi", status: false },
+  { id: uuid(), task: "Xem phim", status: true },
+  { id: uuid(), task: "Đi ngủ", status: true }
+];
+
 export const initialState = {
   isEdit: false,
   isShow: false,
-  tasks: [
-    { id: uuid(), task: "Đi làm", status: true },
-    { id: uuid(), task: "Đi chơi", status: false },
-    { id: uuid(), task: "Xem phim", status: true }
-  ]
+  tasks: JSON.parse(localStorage.getItem("tasks")) || tasksList
 };
 
 export default function tasksReducer(state, action) {

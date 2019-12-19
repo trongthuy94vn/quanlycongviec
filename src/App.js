@@ -1,4 +1,4 @@
-import React, { useReducer, useState } from "react";
+import React, { useReducer, useState, useEffect } from "react";
 import { Container, Row, Col, Button } from "react-bootstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
@@ -26,6 +26,11 @@ function App() {
     dispatchTasks(editForm());
     setCurrentTask(task);
   };
+
+  useEffect(() => {
+    localStorage.setItem("tasks", JSON.stringify(tasks));
+    console.log(localStorage.getItem("tasks"));
+  }, [tasks]);
 
   const handleToggle = () => {
     dispatchTasks(toggleForm());
