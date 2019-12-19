@@ -40,6 +40,7 @@ export default function tasksReducer(state, action) {
       return {
         ...state,
         isShow: false,
+        isEdit: false,
         tasks: state.tasks.filter(task => task.id !== action.id)
       };
 
