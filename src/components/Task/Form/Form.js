@@ -6,19 +6,21 @@ import EditTaskForm from "./EditTaskForm";
 import AddTaskForm from "./AddTaskForm";
 
 import { TasksContext } from "../../../context/TaskContext";
+import { closeForm } from "../../../actions/tasks";
 
-const TaskForm = (props) => {
-  const { dispatch, state } = useContext(TasksContext);
+const TaskForm = () => {
+  const { dispatchTasks, state } = useContext(TasksContext);
+  const {isEdit} = state;
 
   const handleCloseForm = () => {
-    dispatch({ type: "CLOSE_FORM" });
+    dispatchTasks(closeForm());
   };
   return (
     <Col xl="4" sm="4" md="4" lg="4" className="px5">
       <div>
         <Alert variant="warning">
           <Alert.Heading as="h5">
-            {state.isEdit ? "Sửa Công Việc" : "Thêm Công Việc"}
+            {isEdit ? "Sửa Công Việc" : "Thêm Công Việc"}
             <span>
               <FontAwesomeIcon
                 icon="times-circle"
@@ -29,11 +31,7 @@ const TaskForm = (props) => {
           </Alert.Heading>
         </Alert>
       </div>
-      {state.isEdit ? (
-        <EditTaskForm {...props} />
-      ) : (
-        <AddTaskForm />
-      )}
+      {isEdit ? <EditTaskForm /> : <AddTaskForm />}
     </Col>
   );
 };

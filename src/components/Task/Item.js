@@ -3,22 +3,23 @@ import { Button } from "react-bootstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 import { TasksContext } from "../../context/TaskContext";
-import { DELETE_TASK, UPDATE_STATUS } from "../../constants/ActionTypes";
+import { deleteTask, updateStatus } from "../../actions/tasks";
 
-const TaskItem = ({ task, index, onEditTask }) => {
-  const { dispatchTasks } = useContext(TasksContext);
+const TaskItem = ({ task, index }) => {
+  const { dispatchTasks, onEditTask } = useContext(TasksContext);
 
   const handleDeleteTask = () => {
-    dispatchTasks({ type: DELETE_TASK, id: task.id });
+    dispatchTasks(deleteTask(task.id));
   };
 
   const handleUpdateStatus = () => {
-    dispatchTasks({ type: UPDATE_STATUS, id: task.id });
+    dispatchTasks(updateStatus(task.id));
   };
 
   const handleEditTask = () => {
     onEditTask(task);
   };
+
   return (
     <tr>
       <td>{++index}</td>

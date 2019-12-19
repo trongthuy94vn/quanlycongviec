@@ -3,29 +3,25 @@ import { Form, Button } from "react-bootstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 import { TasksContext } from "../../../context/TaskContext";
-import { ADD_TASK } from "../../../constants/ActionTypes";
+import { addTask} from "../../../actions/tasks";
 
 const AddTaskForm = () => {
   const [task, setTask] = useState("");
   const [status, setStatus] = useState(false);
-  const { dispatchTasks, dispatch } = useContext(TasksContext);
-
-  const addTask = () => {
-    dispatchTasks({ type: ADD_TASK, task, status: status });
-    setTask("");
-    setStatus(JSON.parse("false"));
-    dispatch({ type: "SHOW_FORM" });
-  };
+  const { dispatchTasks } = useContext(TasksContext);
 
   const handleSubmit = e => {
     if (task) {
       e.preventDefault();
-      addTask();
+      dispatchTasks(addTask(task, status));
+      setTask("");
+      setStatus(JSON.parse("false"));
     }
   };
 
-  const handleResetSubmit = () => {
-    dispatch({ type: "CLOSE_FORM" });
+  const handleReset = () => {
+    setTask("");
+    setStatus(false);
   };
 
   return (
@@ -57,7 +53,7 @@ const AddTaskForm = () => {
           <FontAwesomeIcon icon="plus" /> Lưu lại
         </Button>
         &nbsp;
-        <Button type="submit" variant="danger" onClick={handleResetSubmit}>
+        <Button type="submit" variant="danger" onClick={handleReset}>
           <FontAwesomeIcon icon="times" /> Hủy Bỏ
         </Button>
       </div>

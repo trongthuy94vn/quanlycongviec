@@ -6,64 +6,53 @@ import TaskForm from "./components/Task/Form/Form";
 import TaskTable from "./components/Task/Table";
 import TaskControl from "./components/Task/Controls";
 
-import tasksReducer, { initialTasks } from "./reducers/tasks";
 import TasksContextProvider from "./context/TaskContext";
-import { initialState, reducer } from "./reducers/state";
-
-import { EDIT_TASK } from "./constants/ActionTypes";
+import tasksReducer, { initialState } from "./reducers/tasks";
+import { toggleForm, editForm } from "./actions/tasks";
 
 import "./App.css";
 
 function App() {
-  const [tasksList, dispatchTasks] = useReducer(tasksReducer, initialTasks);
-  const [state, dispatch] = useReducer(reducer, initialState);
+  const [state, dispatchTasks] = useReducer(tasksReducer, initialState);
   const [currentTask, setCurrentTask] = useState({
     id: null,
     task: "",
     status: true
   });
-  const handleEditTask = task => {
-    dispatch({ type: "EDIT_TASK" });
+
+  const { isShow, tasks } = state;
+
+  const onEditTask = task => {
+    dispatchTasks(editForm());
     setCurrentTask(task);
   };
 
-  const handleShowTaskForm = () => {
-    dispatch({ type: "SHOW_FORM" });
+  const handleToggle = () => {
+    dispatchTasks(toggleForm());
   };
 
-  const handleUpdateTask = (id, updateTask) => {
-    dispatch({ type: "EDIT_TASK" });
-    dispatchTasks({ type: EDIT_TASK, task: updateTask });
-  };
   return (
-    <TasksContextProvider value={{ dispatchTasks, dispatch, state }}>
+    <TasksContextProvider
+      value={{ dispatchTasks, state, onEditTask, currentTask }}
+    >
       <Container>
         <div className="text-center">
           <h1>Quản Lý Công Việc</h1>
           <hr />
         </div>
         <Row>
-          {state.isShow && (
-            <TaskForm
-              onUpdateTask={handleUpdateTask}
-              currentTask={currentTask}
-            />
-          )}
+          {isShow && <TaskForm />}
           <Col
-            xs={!state.isShow ? "12" : "8"}
-            sm={!state.isShow ? "12" : "8"}
-            md={!state.isShow ? "12" : "8"}
-            lg={!state.isShow ? "12" : "8"}
+            xs={!isShow ? "12" : "8"}
+            sm={!isShow ? "12" : "8"}
+            md={!isShow ? "12" : "8"}
+            lg={!isShow ? "12" : "8"}
           >
-            <Button
-              type="button"
-              variant="primary"
-              onClick={handleShowTaskForm}
-            >
+            <Button type="button" variant="primary" onClick={handleToggle}>
               <FontAwesomeIcon icon="plus" /> Thêm Công Việc
             </Button>
             <TaskControl />
-            <TaskTable tasksList={tasksList} onEditTask={handleEditTask} />
+            <TaskTable tasksList={tasks} />
           </Col>
         </Row>
       </Container>

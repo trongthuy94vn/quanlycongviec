@@ -3,22 +3,23 @@ import { Form, Button } from "react-bootstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 import { TasksContext } from "../../../context/TaskContext";
+import { editTask, closeForm } from "../../../actions/tasks";
 
-const EditTaskForm = ({ onUpdateTask, currentTask }) => {
-  const { dispatch } = useContext(TasksContext);
+const EditTaskForm = () => {
+  const { dispatchTasks,currentTask } = useContext(TasksContext);
   const [tasks, setTasks] = useState(currentTask.task);
   const [status, setStatus] = useState(currentTask.status);
 
   const handleSubmit = e => {
     if (tasks) {
       e.preventDefault();
-      const editTask = {
+      const editTasks = {
         task: tasks,
         status: status,
         id: currentTask.id
       };
-      onUpdateTask(tasks.id, editTask);
-      dispatch({ type: "CLOSE_FORM" });
+      dispatchTasks(editTask(editTasks));
+      //   dispatchTasks({ type: "CLOSE_FORM" });
     }
   };
 
@@ -27,10 +28,10 @@ const EditTaskForm = ({ onUpdateTask, currentTask }) => {
     setStatus(currentTask.status);
   }, [currentTask.status, currentTask.task]);
 
-  const handleResetSubmit = () => {
+  const handleReset = () => {
     setTasks(currentTask.task);
     setStatus(currentTask.status);
-    dispatch({ type: "CLOSE_FORM" });
+    dispatchTasks(closeForm());
   };
   return (
     <Form onSubmit={handleSubmit}>
@@ -61,7 +62,7 @@ const EditTaskForm = ({ onUpdateTask, currentTask }) => {
           <FontAwesomeIcon icon="plus" /> Lưu lại
         </Button>
         &nbsp;
-        <Button type="submit" variant="danger" onClick={handleResetSubmit}>
+        <Button type="submit" variant="danger" onClick={handleReset}>
           <FontAwesomeIcon icon="times" /> Hủy Bỏ
         </Button>
       </div>

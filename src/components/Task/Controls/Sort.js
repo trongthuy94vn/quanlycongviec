@@ -3,16 +3,17 @@ import { DropdownButton, Dropdown } from "react-bootstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 import { TasksContext } from "../../../context/TaskContext";
+import { aToZ, zToA } from "../../../actions/tasks";
 
 const TaskSortControl = () => {
   const { dispatchTasks } = useContext(TasksContext);
 
   const ascending = () => {
-    dispatchTasks({ type: "A_TO_Z" });
+    dispatchTasks(aToZ());
   };
 
   const descending = () => {
-    dispatchTasks({ type: "Z_TO_A" });
+    dispatchTasks(zToA());
   };
 
   return (
