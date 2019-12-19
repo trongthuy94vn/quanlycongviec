@@ -3,7 +3,7 @@ import { Form, Button } from "react-bootstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 import { TasksContext } from "../../../context/TaskContext";
-import { addTask} from "../../../actions/tasks";
+import { addTask } from "../../../actions/tasks";
 
 const AddTaskForm = () => {
   const [task, setTask] = useState("");
@@ -15,7 +15,7 @@ const AddTaskForm = () => {
       e.preventDefault();
       dispatchTasks(addTask(task, status));
       setTask("");
-      setStatus(JSON.parse("false"));
+      setStatus(false);
     }
   };
 
@@ -41,7 +41,7 @@ const AddTaskForm = () => {
           as="select"
           required
           value={status}
-          onChange={e => setStatus(e.target.value)}
+          onChange={e => setStatus(JSON.parse(e.target.value))}
         >
           <option value="true">Kích Hoạt</option>
           <option value="false">Ẩn</option>
