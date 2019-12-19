@@ -35,6 +35,7 @@ export default function tasksReducer(state, action) {
           { id: uuid(), task: action.task, status: action.status }
         ]
       };
+
     case DELETE_TASK:
       return {
         ...state,
@@ -81,12 +82,16 @@ export default function tasksReducer(state, action) {
           return task;
         })
       };
+
     case TOGGLE_FORM:
-      return { ...state, isShow: !state.isShow };
+      return { ...state, isShow: !state.isShow, isEdit: false };
+
     case CLOSE_FORM:
       return { ...state, isShow: false, isEdit: false };
+
     case EDIT_FORM:
       return { ...state, isShow: true, isEdit: true };
+
     default:
       return state;
   }
