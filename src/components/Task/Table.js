@@ -3,10 +3,18 @@ import { Table, Form } from "react-bootstrap";
 
 import TaskList from "./List";
 
-const TaskTable = ({ tasksList}) => {
+const TaskTable = ({ tasksList }) => {
   const [status, setStatus] = useState("all");
+  const [value, setValue] = useState("");
+  
+  let filteredTask = tasksList;
 
-  const filteredTask = tasksList.filter(task => {
+  if (value) {
+    filteredTask = tasksList.filter(task => {
+      return task.task.toLowerCase().includes(value.toLowerCase());
+    });
+  }
+  filteredTask = filteredTask.filter(task => {
     if (status === "all") {
       return true;
     }
@@ -18,6 +26,7 @@ const TaskTable = ({ tasksList}) => {
     }
     return false;
   });
+
   return (
     <Table bordered hover>
       <thead>
@@ -32,7 +41,12 @@ const TaskTable = ({ tasksList}) => {
         <tr>
           <td></td>
           <td>
-            <input type="text" className="form-control" />
+            <input
+              type="text"
+              value={value}
+              onChange={e => setValue(e.target.value)}
+              className="form-control"
+            />
           </td>
           <td>
             <Form.Group>
