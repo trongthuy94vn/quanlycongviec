@@ -45,21 +45,11 @@ const TaskItem = ({ task, index }) => {
         )}
       </td>
       <td className="text-center">
-        <TaskButton
-          variant="warning"
-          isEdit={state.isEdit}
-          onClick={handleEditTask}
-          size="md"
-        >
+        <TaskButton variant="warning" onClick={handleEditTask} size="md">
           <FontAwesomeIcon icon="pencil-alt" /> Sửa
         </TaskButton>
         &nbsp;
-        <TaskButton
-          variant="danger"
-          isEdit={state.isEdit}
-          onClick={handleDeleteTask}
-          size="md"
-        >
+        <TaskButton variant="danger" onClick={handleDeleteTask} size="md">
           <FontAwesomeIcon icon={["far", "trash-alt"]} /> Xóa
         </TaskButton>
       </td>
