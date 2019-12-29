@@ -6,7 +6,8 @@ import {
   faTimes,
   faTimesCircle,
   faSortAlphaUp,
-  faSortAlphaDown
+  faSortAlphaDown,
+  faCheck
 } from "@fortawesome/free-solid-svg-icons";
 import { faTrashAlt } from "@fortawesome/free-regular-svg-icons";
 
@@ -18,5 +19,6 @@ library.add(
   faTimesCircle,
   faSortAlphaUp,
   faSortAlphaDown,
-  faTrashAlt
+  faTrashAlt,
+  faCheck
 );
