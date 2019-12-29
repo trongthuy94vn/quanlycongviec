@@ -1,0 +1,25 @@
+{
+  "files": {
+    "main.css": "/quanlycongviec/static/css/main.5df7d988.chunk.css",
+    "main.js": "/quanlycongviec/static/js/main.e6f14b1a.chunk.js",
+    "main.js.map": "/quanlycongviec/static/js/main.e6f14b1a.chunk.js.map",
+    "runtime-main.js": "/quanlycongviec/static/js/runtime-main.2746ce4c.js",
+    "runtime-main.js.map": "/quanlycongviec/static/js/runtime-main.2746ce4c.js.map",
+    "static/css/2.17e5ed98.chunk.css": "/quanlycongviec/static/css/2.17e5ed98.chunk.css",
+    "static/js/2.90a6b7ca.chunk.js": "/quanlycongviec/static/js/2.90a6b7ca.chunk.js",
+    "static/js/2.90a6b7ca.chunk.js.map": "/quanlycongviec/static/js/2.90a6b7ca.chunk.js.map",
+    "index.html": "/quanlycongviec/index.html",
+    "precache-manifest.f50f09986673a38f3db0bd7f4460c1da.js": "/quanlycongviec/precache-manifest.f50f09986673a38f3db0bd7f4460c1da.js",
+    "service-worker.js": "/quanlycongviec/service-worker.js",
+    "static/css/2.17e5ed98.chunk.css.map": "/quanlycongviec/static/css/2.17e5ed98.chunk.css.map",
+    "static/css/main.5df7d988.chunk.css.map": "/quanlycongviec/static/css/main.5df7d988.chunk.css.map",
+    "static/js/2.90a6b7ca.chunk.js.LICENSE": "/quanlycongviec/static/js/2.90a6b7ca.chunk.js.LICENSE"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.2746ce4c.js",
+    "static/css/2.17e5ed98.chunk.css",
+    "static/js/2.90a6b7ca.chunk.js",
+    "static/css/main.5df7d988.chunk.css",
+    "static/js/main.e6f14b1a.chunk.js"
+  ]
+}
